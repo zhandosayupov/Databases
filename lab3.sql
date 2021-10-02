@@ -35,13 +35,13 @@ FROM instructor GROUP BY dept_name
 ORDER BY avg(instructor.salary) ASC;
 --	b.
 --
-SELECT department.building, count(1) FROM department, course
-WHERE department.dept_name = course.dept_name
+SELECT department.building, count(1) FROM department, section
+WHERE department.building = section.building
 GROUP BY department.building
 HAVING count(1) = (
 	SELECT MAX(second.number) FROM (
-		SELECT count(1) AS number FROM department, course 
-		WHERE department.dept_name = course.dept_name
+		SELECT count(1) AS number FROM department, section 
+		WHERE department.building = section.building
 		GROUP BY department.building) 
 	AS second);
 --  c.
