@@ -212,10 +212,10 @@ INSERT INTO bank_account VALUES
 
 
 SELECT DISTINCT customer_id FROM "order"
-RIGHT JOIN package p ON p.order_id = "order".id
-RIGHT JOIN operation o ON o.package_id = p.id
-JOIN transportation t on o.id = t.operation_id
-RIGHT JOIN transport tt ON tt.id = t.transport_id
+INNER JOIN package p ON p.order_id = "order".id
+INNER JOIN operation o ON o.package_id = p.id
+INNER JOIN transportation t on o.id = t.operation_id
+LEFT JOIN transport tt ON tt.id = t.transport_id
 WHERE t.start_date IN (SELECT transportation.start_date FROM transportation WHERE transportation.transport_id = 1721 ORDER BY start_date desc limit(1))
 AND t.transport_id = 1721;
 
