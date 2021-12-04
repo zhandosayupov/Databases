@@ -230,3 +230,8 @@ group by street_address order by num desc limit(1);
 
 SELECT id FROM "order" WHERE expected_date < delivery_date;
 
+SELECT customer_id,street_address, SUM(cost) FROM "order", customer
+WHERE "order".customer_id = customer.id group by customer_id, street_address;
+
+SELECT customer_id, type, SUM(cost) FROM "order", customer
+WHERE "order".customer_id = customer.id group by customer_id, type;
